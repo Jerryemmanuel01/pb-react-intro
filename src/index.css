@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+body{
+    /* background-color: #e0e0e0; */
+}
+
+/* ul{
+    display: flex;
+    gap: 20px;
+} */
+
+/* li{
+    list-style-type: none;
+} */
+/* 
+.nav-wrapper{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+} */
