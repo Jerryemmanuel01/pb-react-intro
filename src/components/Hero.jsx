@@ -1,8 +1,19 @@
-const Hero = ({ intro, subtext }) => {
+import Card from "./Card";
+import Couter from "./Couter";
+import Tasks from "./Tasks";
+
+const Hero = ({ users }) => {
   return (
-    <div>
-      <h1 className="my-3 text-lg font-medium">{intro}</h1>
-      <p className="text-sm leading-6">{subtext}</p>
+    <div className="px-6">
+      {/* <div className=" grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-5">
+        {users.map((val, i) => (
+          <Card user={val} />
+        ))}
+      </div> */}
+
+      {/* <Couter /> */}
+
+      <Tasks />
     </div>
   );
 };
