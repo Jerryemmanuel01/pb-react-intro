@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Tasks from "./components/Tasks";
 import { useState } from "react";
 import Login from "./components/Login";
 
@@ -105,11 +106,11 @@ function App() {
     },
   ];
   return (
-    <div className="bg-[#e0e0e0] py-6">
+    <div className="bg-[#e0e0e0] min-h-screen py-6">
       <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-      <Hero users={users} />
+      <Tasks />
+      {/* <Hero users={users} /> */}
 
-      
       {/* 
       {isLoggedIn ? (
         <Hero users={users} />
