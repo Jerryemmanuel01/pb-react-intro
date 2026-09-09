@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Trash } from "lucide-react";
 
 const Tasks = () => {
   const LSKey = "todoReactTask";
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([
+    { id: 1788954045145, text: "Go to class", completed: false },
+  ]);
 
   const [taskText, setTaskText] = useState("");
 
-  const handleSubmit = async (e) => {
+  // SYNTAX OF useEffect
+  useEffect(() => {
+    localStorage.setItem(LSKey, JSON.stringify(tasks));
+  }, [tasks]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!taskText.trim()) return alert("Please enter a task.");
@@ -18,13 +25,9 @@ const Tasks = () => {
       completed: false,
     };
 
-    await setTasks((prev) => [...prev, newTask]);
+    setTasks((prev) => [...prev, newTask]);
 
     setTaskText("");
-
-    console.log(tasks);
-
-    localStorage.setItem(LSKey, JSON.stringify(tasks));
   };
 
   const toggleTask = (id) => {

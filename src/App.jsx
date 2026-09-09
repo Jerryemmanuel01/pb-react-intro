@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Tasks from "./components/Tasks";
 import { useState } from "react";
 import Login from "./components/Login";
+import Fetch from "./components/Fetch";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -109,6 +110,8 @@ function App() {
     <div className="bg-[#e0e0e0] min-h-screen py-6">
       <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Tasks />
+      {/* <Fetch /> */}
+
       {/* <Hero users={users} /> */}
 
       {/* 
