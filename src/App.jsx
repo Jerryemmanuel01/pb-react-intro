@@ -4,6 +4,7 @@ import Tasks from "./components/Tasks";
 import { useState } from "react";
 import Login from "./components/Login";
 import Fetch from "./components/Fetch";
+import { Toaster } from "sonner";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -108,9 +109,10 @@ function App() {
   ];
   return (
     <div className="bg-[#e0e0e0] min-h-screen py-6">
+      <Toaster position="top-right"/>
       <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-      <Tasks />
-      {/* <Fetch /> */}
+      {/* <Tasks /> */}
+      <Fetch />
 
       {/* <Hero users={users} /> */}
 
