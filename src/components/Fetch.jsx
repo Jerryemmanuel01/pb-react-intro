@@ -2,6 +2,7 @@ import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import Button from "./Button";
 
 const Fetch = () => {
   const [posts, setPosts] = useState([]);
@@ -55,6 +56,8 @@ const Fetch = () => {
     );
   }
 
+  const userId = "238js83hjs"
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,7 +65,7 @@ const Fetch = () => {
 
     try {
       const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
+        `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
         {
           title,
           body,
@@ -70,9 +73,9 @@ const Fetch = () => {
         },
       );
 
-      toast.success("Post created")      
+      toast.success("Post created");
     } catch (error) {
-     toast.error(error);
+      toast.error(error);
     }
   };
 
@@ -90,12 +93,15 @@ const Fetch = () => {
         ))}
       </section>
 
-      <button
+      {/* <button
         className="mt-5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium px-5 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-indigo-200"
         onClick={() => setResfresh((prev) => !prev)}
       >
         Refresh
-      </button>
+      </button> */}
+      <Button variant={"red"} action={() => setResfresh((prev) => !prev)}>Refresh</Button>
+      <Button variant={"green"} >Refresh</Button>
+      <Button variant={"outline"} >Refresh</Button>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
@@ -116,12 +122,15 @@ const Fetch = () => {
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
-        <button
+
+        <Button type={"submit"} variant={"blue"}>Submit</Button>
+
+        {/* <button
         type="submit"
           className="mt-5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium px-5 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-indigo-200 block"
         >
           Submit
-        </button>
+        </button> */}
       </form>
     </div>
   );
