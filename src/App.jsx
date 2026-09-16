@@ -6,26 +6,34 @@ import Login from "./components/Login";
 import Fetch from "./components/Fetch";
 import { Toaster } from "sonner";
 import { users } from "./utils/utils";
+import { UserContext } from "./context/UserContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [userData, setUserData] = useState({
+    name: "John",
+    email: "john123@gmail.com",
+  });
 
   return (
-    <div className="bg-[#e0e0e0] min-h-screen py-6">
-      <Toaster position="top-right" />
-      <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-      {/* <Tasks /> */}
-      <Fetch />
+    <UserContext.Provider value={{ userData, setUserData }}>
+      <div className="bg-[#e0e0e0] min-h-screen py-6">
+        <Toaster position="top-right" />
+        <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+        {/* <Tasks /> */}
+        <Fetch />
 
-      {/* <Hero users={users} /> */}
+        {/* <Hero users={users} /> */}
 
-      {/* 
+        {/* 
       {isLoggedIn ? (
         <Hero users={users} />
       ) : (
         <Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
       )} */}
-    </div>
+      </div>
+    </UserContext.Provider>
   );
 }
 

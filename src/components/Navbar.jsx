@@ -1,4 +1,9 @@
+import { UserContext } from "../context/UserContext";
+import Button from "./Button";
+import { useContext } from "react";
+
 const Navbar = ({ setIsLoggedIn, isLoggedIn }) => {
+  const { userData } = useContext(UserContext);
   return (
     <div className="flex justify-between items-center px-8 py-4">
       <h2 className="font-bold text-[#05008d] text-2xl">LOGO</h2>
@@ -10,13 +15,17 @@ const Navbar = ({ setIsLoggedIn, isLoggedIn }) => {
         <li className="list-item">Contact</li>
       </ul>
 
-      {isLoggedIn && (
-        <button
-          onClick={() => setIsLoggedIn(!isLoggedIn)}
-          className="bg-black text-white px-4 py-1 rounded-2xl text-sm"
-        >
-          Logout
-        </button>
+      {isLoggedIn ? (
+        <Button variant={"green"} action={() => setIsLoggedIn(!isLoggedIn)}>
+          Login
+        </Button>
+      ) : (
+        <div>
+          <span className="text-blue-700 font-bold pr-2">{userData.name}</span>
+          <Button variant={"outline"} action={() => setIsLoggedIn(!isLoggedIn)}>
+            Logout
+          </Button>
+        </div>
       )}
     </div>
   );

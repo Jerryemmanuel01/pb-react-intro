@@ -1,15 +1,22 @@
 import { Loader } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import Button from "./Button";
+import Input from "./Input";
+import { UserContext } from "../context/UserContext";
 
 const Fetch = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [resfresh, setResfresh] = useState(false);
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const { userData, setUserData } = useContext(UserContext);
+  const [editName, setEditName] = useState(userData.name);
+
+  console.log(userData.name);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -56,7 +63,7 @@ const Fetch = () => {
     );
   }
 
-  const userId = "238js83hjs"
+  const userId = "238js83hjs";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,8 +86,22 @@ const Fetch = () => {
     }
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setUserData({...userData, name: editName});
+  };
+
   return (
     <div className="px-6 mt-6">
+      <form className="">
+        <label htmlFor="name">Edit Profile Name</label>
+        <br />
+        <Input value={editName} onChange={(e) => setEditName(e.target.value)} />
+        <Button variant={"blue"} action={handleEdit}>
+          Save
+        </Button>
+      </form>
+
       <section className="grid gap-3">
         {posts?.slice(50, 52).map((post) => (
           <div key={post.id} className="border min-h-10 rounded-xl  p-4">
@@ -99,19 +120,27 @@ const Fetch = () => {
       >
         Refresh
       </button> */}
-      <Button variant={"red"} action={() => setResfresh((prev) => !prev)}>Refresh</Button>
-      <Button variant={"green"} >Refresh</Button>
-      <Button variant={"outline"} >Refresh</Button>
+      <Button variant={"red"} action={() => setResfresh((prev) => !prev)}>
+        Refresh
+      </Button>
+      <Button variant={"green"}>Refresh</Button>
+      <Button variant={"outline"}>Refresh</Button>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <br />
-        <input
+        <Input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter Title"
+          type="number"
+        />
+        {/* <input
           type="text"
           className="border px-3"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-        />
+        /> */}
         <br />
 
         <label htmlFor="body">Body</label>
@@ -123,7 +152,9 @@ const Fetch = () => {
           onChange={(e) => setBody(e.target.value)}
         />
 
-        <Button type={"submit"} variant={"blue"}>Submit</Button>
+        <Button type={"submit"} variant={"blue"}>
+          Submit
+        </Button>
 
         {/* <button
         type="submit"
