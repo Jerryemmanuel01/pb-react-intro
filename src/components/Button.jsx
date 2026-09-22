@@ -1,4 +1,4 @@
-const Button = ({ children, type, action, variant}) => {
+const Button = ({ children, type, action, variant="outline"}) => {
   const styles = {
     blue: "bg-blue-500 text-red-500",
     red: "bg-red-500",

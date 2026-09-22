@@ -7,6 +7,7 @@ import Fetch from "./components/Fetch";
 import { Toaster } from "sonner";
 import { users } from "./utils/utils";
 import { UserContext } from "./context/UserContext";
+import StateMgt from "./components/StateMgt";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -21,8 +22,9 @@ function App() {
       <div className="bg-[#e0e0e0] min-h-screen py-6">
         <Toaster position="top-right" />
         <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
-        {/* <Tasks /> */}
-        <Fetch />
+        <Tasks />
+        {/* <Fetch /> */}
+        {/* <StateMgt /> */}
 
         {/* <Hero users={users} /> */}
 
