@@ -4,7 +4,9 @@ import { initialTask, todoReducer } from "../context/reducer";
 import { TodoContext } from "../context/TodoContext";
 
 const Todo = () => {
-  const { tasks, dispatch } = useContext(TodoContext);
+  let tasks = []
+  let dispatch = () => {}
+  // const { tasks, dispatch } = useContext(TodoContext);
 
   const [taskText, setTaskText] = useState("");
 
