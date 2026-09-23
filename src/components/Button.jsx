@@ -8,7 +8,7 @@ const Button = ({ children, type, action, variant="outline"}) => {
   return (
     <button
       type={type}
-      onClick={action ? action : ""}
+      onClick={action}
       className={`${styles[variant]}  px-6 h-10 rounded-lg `}
     >
       {children}

@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer, useContext } from "react";
 import { Trash } from "lucide-react";
+import { initialTask, todoReducer } from "../context/reducer";
+import { TodoContext } from "../context/TodoContext";
 
-const Tasks = () => {
-  const LSKey = "todoReactTask";
-  const [tasks, setTasks] = useState([
-    { id: 1788954045145, text: "Go to class", completed: false },
-  ]);
+const Todo = () => {
+  const { tasks, dispatch } = useContext(TodoContext);
 
   const [taskText, setTaskText] = useState("");
 
-  // SYNTAX OF useEffect
-  useEffect(() => {
-    localStorage.setItem(LSKey, JSON.stringify(tasks));
-  }, [tasks]);
+  console.log(tasks);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,21 +21,26 @@ const Tasks = () => {
       completed: false,
     };
 
-    setTasks((prev) => [...prev, newTask]);
+    dispatch({ type: "ADD_TASK", payload: newTask });
 
     setTaskText("");
   };
 
   const toggleTask = (id) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task,
-      ),
-    );
+    // setTasks((prev) =>
+    //   prev.map((task) =>
+    //     task.id === id ? { ...task, completed: !task.completed } : task,
+    //   ),
+    // );
+
+    console.log(id);
+
+    dispatch({ type: "TOGGLE_TASK", payload: id });
   };
 
   const deleteTask = (id) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
+    // setTasks((prev) => prev.filter((task) => task.id !== id));
+    dispatch({ type: "DELETE_TASK", payload: id });
   };
 
   const completedCount = tasks.filter((task) => task.completed).length;
@@ -86,7 +87,9 @@ const Tasks = () => {
                   : "bg-white border-gray-100 text-gray-700 hover:border-gray-300 shadow-xs"
               }`}
             >
-              <label className="flex items-center gap-3 cursor-pointer flex-1 mr-2">
+              <label
+                className="flex items-center gap-3 cursor-pointer flex-1 mr-2"
+              >
                 <input
                   type="checkbox"
                   checked={item.completed}
@@ -117,4 +120,4 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+export default Todo;
